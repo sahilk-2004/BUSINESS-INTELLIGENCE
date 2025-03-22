@@ -1,0 +1,23 @@
+# Load the necessary library
+library(party)
+
+# Load the dataset
+if (!exists("readingSkills")) {
+    data("readingSkills", package = "party")
+}
+
+# Display the first few rows of the dataset
+print(head(readingSkills))
+
+# Select the first 105 rows as input data
+input.dat <- readingSkills[1:105, ]
+
+# Save the plot as PNG
+png(file = "decision_tree.png")
+
+# Create and plot the decision tree
+output.tree <- ctree(nativeSpeaker ~ age + shoeSize + score, data = input.dat)
+plot(output.tree)
+
+# Close the PNG device
+dev.off()
