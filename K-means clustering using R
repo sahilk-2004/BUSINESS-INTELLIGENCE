@@ -1,0 +1,33 @@
+# Load the necessary dataset
+data(iris)
+
+# Create a copy of the iris dataset
+newiris <- iris
+
+# Remove the 'Species' column for clustering
+newiris$Species <- NULL
+
+# Perform k-means clustering with 3 clusters
+set.seed(123)  # For reproducibility
+kc <- kmeans(newiris, centers = 3)
+
+# Print the k-means clustering result
+print(kc)
+
+
+
+
+table(iris$Species, kc$cluster)
+
+
+
+
+plot(newiris[c("Sepal.Length", "Sepal.Width")], col = kc$cluster, 
+     main = "K-means Clustering of Iris Data", 
+     xlab = "Sepal Length", 
+     ylab = "Sepal Width", 
+     pch = 19)
+
+# Correctly plot the cluster centers
+points(kc$centers[, c("Sepal.Length", "Sepal.Width")],  # Correct column names
+       col = 1:3, pch = 8, cex = 2)
