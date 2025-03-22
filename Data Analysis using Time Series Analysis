@@ -1,0 +1,23 @@
+# Define the rainfall data
+rainfall <- c(799, 1174.8, 865.1, 1334.6, 635.4, 918.5, 685.5, 
+              998.6, 784.2, 985, 882.8, 1071)
+
+# Create a time series object
+rainfall.timeseries <- ts(rainfall, start = c(2012, 1), frequency = 12)
+
+# Print the time series data
+print(rainfall.timeseries)
+
+# Save the plot as PNG
+png(file = "rainfall.png", width = 800, height = 600)
+
+# Plot the time series with improved labels and title
+plot(rainfall.timeseries, 
+     main = "Monthly Rainfall Data (2012)", 
+     xlab = "Year", 
+     ylab = "Rainfall (mm)", 
+     col = "blue", 
+     lwd = 2)
+
+# Close the PNG device
+dev.off()
